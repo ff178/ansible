@@ -10,6 +10,8 @@
       import_tasks: amazon-linux.yml
     - name: Include user tasks
       import_tasks: user.yml
+    - name: Include docker Install in amazon-linux
+      import_tasks: dockerA.yml
   
 
 
