@@ -8,4 +8,7 @@
   tasks:
     - name: Include ubuntu webserver Install
       import_tasks: ubuntu.yml
+    - name: Include install docker
+      import_tasks: dockerU.yml
+    
    
