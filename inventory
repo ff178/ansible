@@ -2,3 +2,6 @@
 18.188.59.175
 18.218.84.16
 3.17.151.168
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

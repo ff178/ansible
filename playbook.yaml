@@ -2,16 +2,17 @@
 - hosts: all
   remote_user: ec2-user
   become: yes
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   tasks:
     # - name: Copy file 
     #   ansible.builtin.copy:
     #     src: /tmp/test.test
     #     dest: ~/
-    - name: install apache using dnf  # name of the play
-      yum:
+    - name: Install Apache using dnf
+      dnf:
         name: httpd
-        state: latest
-        update_cache: yes
+        state: present
     - name: start and enable autostart of apache server
       systemd:
         name: httpd
