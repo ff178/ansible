@@ -8,7 +8,7 @@
   tasks:
     - name: Include amazon-linux apache Install
       import_tasks: amazon-linux.yml
-    #- name: Include ubuntu webserver apache Install
+    - name: Include user tasks
+      import_tasks: user.yml
+    #- name: Include ubuntu webser apache Install
     #  import_tasks: ubuntu.yml
-    #- name: Include user tasks
-    #  import_tasks: user.yml
