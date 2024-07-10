@@ -1,6 +1,6 @@
 ---
-- name: Main Playbook
-  hosts: all
+- name: Linux Playbook
+  hosts: amazon_linux
   remote_user: ec2-user
   become: yes
   vars:
@@ -10,5 +10,7 @@
       import_tasks: amazon-linux.yml
     - name: Include user tasks
       import_tasks: user.yml
-    #- name: Include ubuntu webser apache Install
-    #  import_tasks: ubuntu.yml
+  
+
+
+    
