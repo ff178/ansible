@@ -5,24 +5,7 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3
   tasks:
-    # - name: Copy file 
-    #   ansible.builtin.copy:
-    #     src: /tmp/test.test
-    #     dest: ~/
-    - name: Install Apache using dnf
-      dnf:
-        name: httpd
-        state: present
-    - name: start and enable autostart of apache server
-      systemd:
-        name: httpd
-        state: started
-        enabled: yes
-    - name: Status of httpd
-      ansible.builtin.service:
-        name: httpd
-        state: reloaded  
-    - name: Start service httpd, if not started
-      ansible.builtin.service:
-        name: httpd
-        state: started
+    - name: Include amazon-linux apache Install
+      import_tasks: amazon-linux.yml
+    #- name: Include user tasks
+    #  import_tasks: user.yml

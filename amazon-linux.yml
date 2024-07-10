@@ -1,0 +1,18 @@
+---
+    - name: Install Apache using dnf
+      dnf:
+        name: httpd
+        state: present
+    - name: start and enable autostart of apache server
+      systemd:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: Status of httpd
+      ansible.builtin.service:
+        name: httpd
+        state: reloaded  
+    - name: Start service httpd, if not started
+      ansible.builtin.service:
+        name: httpd
+        state: started
