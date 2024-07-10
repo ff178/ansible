@@ -3,5 +3,10 @@
 18.218.84.16
 3.17.151.168
 
+[ubuntu]
+13.59.170.194
+18.218.81.226
+18.224.22.129
+
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
