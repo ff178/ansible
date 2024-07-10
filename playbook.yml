@@ -4,12 +4,17 @@
   remote_user: ec2-user
   become: yes
   vars:
+
     ansible_python_interpreter: /usr/bin/python3
+
   tasks:
+  
     - name: Include amazon-linux apache Install
       import_tasks: amazon-linux.yml
+
     - name: Include user tasks
       import_tasks: user.yml
+
     - name: Include docker Install in amazon-linux
       import_tasks: dockerA.yml
   

@@ -13,10 +13,21 @@
         name: apache2
         state: started
         enabled: yes
+        
     - name: Install pip
       apt:
         name: python3-pip
         state: present
         update_cache: yes
+
     - name: Install six module with --break-system-packages
       command: /usr/bin/python3 -m pip install --break-system-packages six
+
+    - name: Verify Apache service status
+      command: systemctl status apache2
+      register: apache_status
+      ignore_errors: yes
+
+    - name: Print Apache status
+      debug:
+        msg: "{{ apache_status.stdout_lines }}"
