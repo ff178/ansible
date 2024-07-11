@@ -30,7 +30,3 @@
 
     - name: Include user tasks
       import_tasks: user.yml
-     
-
-
-    
