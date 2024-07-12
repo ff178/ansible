@@ -4,6 +4,9 @@
   remote_user: ubuntu
   become: yes
   gather_facts: yes
+  vars:
+    last_name: "Varon"
+    names_file_path: "~/names.txt"
 
   tasks:
     - name: Install packages on Ubuntu
@@ -25,12 +28,18 @@
       loop:
         - apache2
         - mysql
+    
+    - name: Include manage users tasks
+      import_tasks: manage_user.yml
         
 - name: Setup web server, SQL, and Node.js on Amazon Linux
   hosts: amazon_linux
   remote_user: ec2-user
   become: yes
   gather_facts: yes
+  vars:
+    last_name: "Barraza"
+    names_file_path: "~/names.txt"
 
   tasks:
     - name: Install packages on Amazon Linux
@@ -44,11 +53,11 @@
         - postgresql15
         - postgresql15-server
 
-    - name: Initialize PostgreSQL database
-      command: "/usr/bin/initdb -D /var/lib/pgsql/test1"
-      become: yes
-      become_user: postgres
-      when: ansible_distribution == 'Amazon'
+    #- name: Initialize PostgreSQL database
+    #  command: "/usr/bin/initdb -D /var/lib/pgsql/db"
+    #  become: yes
+    #  become_user: postgres
+    #  when: ansible_distribution == 'Amazon'
 
     - name: Start and enable services on Amazon Linux
       systemd:
@@ -57,4 +66,7 @@
         enabled: yes
       loop:
         - httpd
+
+    - name: Include manage users tasks
+      import_tasks: manage_user.yml
 

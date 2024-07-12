@@ -1,0 +1,37 @@
+---
+    - name: Ensure names.txt exists
+      file:
+        path: "{{ names_file_path }}"
+        state: touch
+
+    - name: Add initial names to names.txt
+      lineinfile:
+        path: "{{ names_file_path }}"
+        line: "{{ item }}"
+        create: yes
+        insertafter: EOF
+      loop:
+        - "Fabian"
+        - "Kelly"
+        - "Liz"
+        - "Arun"
+
+    - name: Replace 'Liz' with 'Elizabeth' in names.txt
+      lineinfile:
+        path: "{{ names_file_path }}"
+        regexp: '^Liz$'
+        line: 'Elizabeth'
+
+    - name: Add last name to names.txt
+      lineinfile:
+        path: "{{ names_file_path }}"
+        line: "{{ last_name }}"
+        insertafter: EOF
+
+    - name: Debug variable last_name
+      debug:
+        msg: "Last name is {{ last_name }}"
+
+    - name: Debug file path
+      debug:
+        msg: "File path is {{ names_file_path }}"
